@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal SWAT 2ª Linha</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+.login{
+    width:350px;
+    margin:100px auto;
+    background:white;
+    color:black;
+    padding:20px;
+    border-radius:10px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    background:#2563eb;
+    color:white;
+    border:none;
+}
+
+#portal{
+    display:none;
+}
+
+.header{
+    background:#1e293b;
+    padding:20px;
+    text-align:center;
+}
+
+.card{
+    background:#1e293b;
+    margin:15px;
+    padding:15px;
+    border-radius:10px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #334155;
+    padding:8px;
+}
+
+th{
+    background:#2563eb;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="login" id="login">
+<h2>Portal SWAT</h2>
+
+<input type="text" id="user" placeholder="Login">
+<input type="password" id="pass" placeholder="Palavra-passe">
+
+<button onclick="entrar()">Entrar</button>
+
+<p id="erro"></p>
+</div>
+
+<div id="portal">
+
+<div class="header">
+<h1>SWAT 2ª LINHA</h1>
+<h3 id="clock"></h3>
+<p>17 Colaboradores</p>
+</div>
+
+<div class="card">
+<h2>Pesquisa</h2>
+<input type="text" id="search" placeholder="Pesquisar colaborador...">
+</div>
+
+<div class="card">
+<h2>Escala de Lunch e Breaks</h2>
+
+<table id="tabela">
+<tr>
+<th>Nome</th>
+<th>Lunch</th>
+<th>1º Break</th>
+<th>2º Break</th>
+</tr>
+
+<tr><td>Ailton Nascimento</td><td>11:00</td><td>09:30</td><td>14:00</td></tr>
+<tr><td>Anderson Gonçalves</td><td>12:00</td><td>09:45</td><td>14:15</td></tr>
+<tr><td>Joel Bampangi</td><td>12:30</td><td>10:00</td><td>14:30</td></tr>
+<tr><td>Teresa Eusébio</td><td>13:00</td><td>10:15</td><td>14:45</td></tr>
+<tr><td>Osvaldo Muhanda</td><td>13:30</td><td>10:45</td><td>15:15</td></tr>
+<tr><td>Lázaro Mateus</td><td>14:00</td><td>10:45</td><td>16:00</td></tr>
+<tr><td>Admira Chala</td><td>13:00</td><td>11:00</td><td>16:45</td></tr>
+<tr><td>Dionísio Xapassa</td><td>16:30</td><td>14:30</td><td>19:15</td></tr>
+<tr><td>Eliane André</td><td>16:00</td><td>14:45</td><td>19:30</td></tr>
+<tr><td>Dino António</td><td>19:00</td><td>17:00</td><td>21:15</td></tr>
+<tr><td>Filipe Nguengo</td><td>17:00</td><td>16:00</td><td>20:45</td></tr>
+<tr><td>Hélvio dos Santos</td><td>19:30</td><td>17:15</td><td>21:30</td></tr>
+<tr><td>Delfina Luís</td><td>15:00</td><td>13:45</td><td>18:30</td></tr>
+<tr><td>Wazola Osvaldo</td><td>16:00</td><td>14:30</td><td>19:30</td></tr>
+<tr><td>Leocádia Chicuambi</td><td>14:00</td><td>12:00</td><td>16:30</td></tr>
+
+</table>
+</div>
+
+<div class="card">
+<h2>Imagem da Escala</h2>
+<p>Guarde a imagem enviada com o nome escala.png na mesma pasta do HTML.</p>
+<img src="escala.png" width="100%">
+</div>
+
+</div>
+
+<script>
+
+function entrar(){
+let u=document.getElementById("user").value;
+let p=document.getElementById("pass").value;
+
+if(u=="SWAT" && p=="swat2026"){
+document.getElementById("login").style.display="none";
+document.getElementById("portal").style.display="block";
+}
+else{
+document.getElementById("erro").innerHTML="Credenciais inválidas";
+}
+}
+
+setInterval(()=>{
+document.getElementById("clock").innerHTML=
+new Date().toLocaleString();
+},1000);
+
+document.addEventListener("keyup",function(){
+let filtro=document.getElementById("search").value.toLowerCase();
+let linhas=document.querySelectorAll("#tabela tr");
+
+for(let i=1;i<linhas.length;i++){
+let txt=linhas[i].innerText.toLowerCase();
+linhas[i].style.display=txt.includes(filtro)?"":"none";
+}
+});
+
+</script>
+
+</body>
+</html>
